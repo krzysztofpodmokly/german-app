@@ -6,7 +6,6 @@ const Record = require('../../models/Record');
 // @route     POST api/translations
 // @desc      Create record in database with german word, translation and a sentence with this word
 // @access    Public
-
 router.post(
   '/',
   [
@@ -48,5 +47,20 @@ router.post(
     }
   }
 );
+
+// @route     GET api/translations
+// @desc      Retrieve random translation from database
+// @access    Public
+router.get('/random', async (req, res) => {
+  try {
+    const randomTranslation = await Record.aggregate([
+      { $sample: { size: 1 } }
+    ]);
+    res.send(randomTranslation);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
