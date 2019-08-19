@@ -22,14 +22,25 @@ router.post(
 
     const { word, translation, sentence } = req.body;
 
-    const translationFields = {};
-    if (word) translationFields.word = word;
-    if (translation) translationFields.translation = translation;
-    if (sentence) translationFields.sentence = sentence;
-
     try {
-      const translation = new Record(translationFields);
-      await translation.save();
+      // check word OR translation if was already added
+      let translatedWord = await Record.findOne({
+        $or: [{ word }, { translation }]
+      });
+      if (translatedWord) {
+        return res
+          .status(400)
+          .send({ errors: [{ msg: 'This word already exists' }] });
+      }
+
+      // if the word was not registered in the database, create new and save
+      const translationFields = {};
+      if (word) translationFields.word = word;
+      if (translation) translationFields.translation = translation;
+      if (sentence) translationFields.sentence = sentence;
+
+      translatedWord = new Record(translationFields);
+      await translatedWord.save();
       res.send(translation);
     } catch (error) {
       console.error(error.message);
