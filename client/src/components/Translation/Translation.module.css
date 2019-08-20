@@ -1,0 +1,27 @@
+.Translation {
+  font-size: 30px;
+  font-weight: 200;
+  color: #2B0152;
+  position: relative;
+  z-index: 2;
+  padding: 10px;
+  /* box-shadow: 0 10px 20px -6px #2B0152; */
+}
+
+.Wrapper {
+  position: relative;
+  margin-top: 30px;
+}
+
+.Wrapper::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  opacity: .8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border-radius: 4px;
+}
