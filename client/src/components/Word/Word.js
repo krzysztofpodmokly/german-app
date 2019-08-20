@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 
 import classes from './Word.module.css';
+import Button from '../UI/Button/Button';
 
 const Word = props => {
   return (
@@ -8,7 +9,7 @@ const Word = props => {
       <div className={classes.Wrapper}>
         <div className={classes.Word}>der Pfirsich</div>
       </div>
-      <button>REVEAL TRANSLATION</button>
+      <Button />
     </Fragment>
   );
 };
