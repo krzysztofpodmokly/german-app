@@ -99,7 +99,10 @@ router.get('/', async (req, res) => {
       // sentences: { $regex: regExp, $nin: ['sentence'] }
     });
     res.send(words);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
 });
 
 module.exports = router;
