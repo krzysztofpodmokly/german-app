@@ -9,9 +9,17 @@ const Record = require('../../models/Record');
 router.post(
   '/',
   [
-    check('word', 'Please add a german word').isString(),
-    check('translation', 'Please add a proper translation').isString(),
-    check('sentence', 'Please add example sentence').isString()
+    check('word', 'Please add a german noun').isString(),
+    check('article', 'Please enter an article')
+      .isString()
+      .isLength(3),
+    check('wordTranslated', 'Please add a proper translation').isString(),
+    check('sentences', 'Please add two translations')
+      .not()
+      .isEmpty(),
+    check('sentences.*.sentence', 'Sentence must be a string')
+      .isLength({ min: 2 })
+      .matches(/^[a-zA-Z ]*$/, 'i')
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -19,13 +27,15 @@ router.post(
       return res.status(400).send({ errors: errors.array() });
     }
 
-    const { word, translation, sentence } = req.body;
+    console.log(req.body);
+
+    const { word, article, wordTranslated, sentences } = req.body;
 
     try {
       // check word OR translation if was already added
       let translatedWord = await Record.findOne({
-        $or: [{ word }, { translation }]
-      });
+        $or: [{ word }, { wordTranslated }]
+      }).populate(['sentence']);
       if (translatedWord) {
         return res
           .status(400)
@@ -35,12 +45,13 @@ router.post(
       // if the word was not registered in the database, create new and save
       const translationFields = {};
       if (word) translationFields.word = word;
-      if (translation) translationFields.translation = translation;
-      if (sentence) translationFields.sentence = sentence;
+      if (article) translationFields.article = article;
+      if (wordTranslated) translationFields.wordTranslated = wordTranslated;
+      if (sentences.length > 0) translationFields.sentences = sentences;
 
       translatedWord = new Record(translationFields);
       await translatedWord.save();
-      res.send(translation);
+      res.send(translatedWord);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server error');

@@ -6,14 +6,28 @@ const RecordSchema = new Schema({
     type: String,
     required: true
   },
-  translation: {
+  article: {
     type: String,
     required: true
   },
-  sentence: {
+  wordTranslated: {
     type: String,
     required: true
   },
+  sentences: [
+    {
+      sentence: {
+        type: String,
+        required: true
+      }
+    },
+    {
+      sentence: {
+        type: String,
+        required: true
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now
