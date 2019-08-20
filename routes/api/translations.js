@@ -15,8 +15,8 @@ router.post(
       .isLength(3),
     check('wordTranslated', 'Please add a proper translation').isString(),
     check('sentences', 'Please add two translations')
-      .not()
-      .isEmpty(),
+      .custom(sentences => sentences && sentences.length === 2)
+      .withMessage('Provide two sentences'),
     check('sentences.*.sentence', 'Sentence must be a string')
       .isLength({ min: 2 })
       .matches(/^[a-zA-Z ]*$/, 'i')
@@ -26,8 +26,6 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).send({ errors: errors.array() });
     }
-
-    console.log(req.body);
 
     const { word, article, wordTranslated, sentences } = req.body;
 
@@ -72,6 +70,36 @@ router.get('/random', async (req, res) => {
     console.error(error.message);
     res.status(500).send('Server Error');
   }
+});
+
+// @route     GET api/translations
+// @desc      Retrieve random translation from database
+// @access    Public
+router.get('/', async (req, res) => {
+  try {
+    const userQuery = req.query.search;
+    const regExp = new RegExp(
+      '\\W' +
+        userQuery +
+        '|^' +
+        userQuery +
+        '|' +
+        userQuery +
+        '$|' +
+        userQuery +
+        'W',
+      'i'
+    );
+    const words = await Record.find({
+      $or: [
+        { word: { $regex: regExp } },
+        { article: { $regex: regExp } },
+        { wordTranslated: { $regex: regExp } }
+      ]
+      // sentences: { $regex: regExp, $nin: ['sentence'] }
+    });
+    res.send(words);
+  } catch (error) {}
 });
 
 module.exports = router;
