@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import landingImg from '../../assets/landing.jpg';
+import landingImg from '../../assets/images/landing.jpg';
 import classes from './Landing.module.css';
 
 const Landing = props => {

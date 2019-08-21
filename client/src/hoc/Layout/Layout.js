@@ -1,14 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import classes from './Layout.module.css';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import MobileMenu from '../../components/Navigation/MobileMenu/MobileMenu';
 
 const Layout = props => {
-  const multipleClasses = [classes.Content, classes.Landing];
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  const mobileMenuCloseHandler = () => {
+    setShowMobileMenu(false);
+  };
+
+  const mobileMenuToggleHandler = () => {
+    // async nature
+    setShowMobileMenu(prevState => !prevState.showMobileMenu);
+  };
 
   return (
     <Fragment>
-      <div>Toolbar</div>
-      <div>Side Nav</div>
+      <Toolbar toggleMenu={mobileMenuToggleHandler} />
+      <MobileMenu open={showMobileMenu} closed={mobileMenuCloseHandler} />
       <main className={classes.Content}>{props.children}</main>
     </Fragment>
   );
