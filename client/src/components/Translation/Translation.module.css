@@ -9,18 +9,20 @@
 }
 
 .Translation {
+  color: #E66B16;
+  text-transform: uppercase;
+  font-size: 40px;
+}
+
+.Sentence {
   font-size: 30px;
-  font-weight: 200;
   color: #2B0152;
-  position: relative;
-  z-index: 2;
-  padding: 10px;
+  text-align: center;
   /* box-shadow: 0 10px 20px -6px #2B0152; */
 }
 
 .Wrapper {
   position: relative;
-  margin-top: 30px;
 }
 
 .Wrapper::after {
@@ -33,5 +35,19 @@
   top: 0;
   left: 0;
   z-index: 1;
-  border-radius: 4px;
+}
+
+.General {
+  position: relative;
+  z-index: 2;
+  font-weight: 200;
+  padding: 5px 20px;
+}
+
+.MarginTopMedium {
+  margin-top: 20px;
+}
+
+.MarginTopSmall {
+  margin-top: 10px;
 }
