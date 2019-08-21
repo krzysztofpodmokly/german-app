@@ -4,6 +4,7 @@ import classes from './Translation.module.css';
 import Button from '../UI/Button/Button';
 
 const Translation = props => {
+  console.log(props);
   return (
     <Fragment>
       <div className={classes.Wrapper}>
