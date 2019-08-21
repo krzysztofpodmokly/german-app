@@ -6,7 +6,7 @@
 }
 
 .NavigationItem a {
-  color: black;
+  color: #2B0152;
   text-decoration: none;
   width: 100%;
   box-sizing: border-box;
@@ -17,7 +17,7 @@
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a.active {
-  color: black;
+  color: #E66B16;
 }
 
 @media (min-width: 500px) {
@@ -42,5 +42,14 @@
     background-color: rgba(43, 1, 82, .2);
     border-bottom: 4px solid rgba(43, 1, 82, .2);
     color: #fff;
+    height: 100%;
+  }
+}
+
+@media (max-width: 499px) {
+  .DesktopOnly {
+    width: auto;
+    margin: 0 20px;
+    font-size: 20px;
   }
 }

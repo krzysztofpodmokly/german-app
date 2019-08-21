@@ -5,7 +5,7 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationItems = () => {
   return (
-    <ul className={classes.NavigationItems}>
+    <ul className={[classes.NavigationItems, classes.DesktopOnly].join(' ')}>
       <NavigationItem link='/' active>
         Lottery
       </NavigationItem>

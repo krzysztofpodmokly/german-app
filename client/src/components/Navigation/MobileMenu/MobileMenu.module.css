@@ -1,13 +1,13 @@
 .MobileMenu {
   position: fixed;
-  width: 200px;
-  max-width: 70%;
-  height: 100%;
+  width: 100%;
+  /* max-width: 70%; */
+  /* height: 100px; */
   left: 0;
   top: 0;
   z-index: 200;
-  background-color: #fff;
-  padding: 32px 16px;
+  background-color: #E8E0F0;
+  padding: 20px 0px;
   box-sizing: border-box;
   transition: transform .3s ease-out;
 }
@@ -19,9 +19,9 @@
 }
 
 .Open {
-  transform: translateX(0);
+  transform: translateY(0);
 }
 
 .Close {
-  transform: translateX(-100vh);
+  transform: translateY(-100vh);
 }
