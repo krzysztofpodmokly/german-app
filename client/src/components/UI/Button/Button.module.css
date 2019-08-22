@@ -1,8 +1,8 @@
 .Btn {
   position: relative;
   margin-top: 30px;
-  box-shadow: inset 0 20px 50px #2B0152;
-  transition: background-color .3s;
+  box-shadow: inset 0 20px 50px #2b0152;
+  transition: background-color 0.3s;
   border: none;
   outline: none;
   padding: 15px 30px;
@@ -16,10 +16,10 @@
   width: 100%;
   height: 3px;
 
-  background-color: rgba(43, 1, 82, .5);
+  background-color: rgba(43, 1, 82, 0.5);
   transform: scaleX(0);
   /* transform-origin: left; */
-  transition: transform .3s;
+  transition: transform 0.3s;
 }
 
 .Btn:hover::before {
@@ -27,7 +27,7 @@
 }
 
 .Btn:hover {
-  background-color: rgba(43, 1, 82, .4);
+  background-color: rgba(43, 1, 82, 0.4);
 }
 
 .BtnLink {
@@ -37,4 +37,9 @@
 
   position: relative;
   z-index: 10;
+}
+
+.Btn:disabled {
+  cursor: not-allowed;
+  background-color: #d7d7d7;
 }
