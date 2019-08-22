@@ -3,14 +3,19 @@
   margin-top: 30px;
   box-shadow: inset 0 20px 50px #2B0152;
   transition: background-color .3s;
+  border: none;
+  outline: none;
+  padding: 15px 30px;
 }
 
 .Btn::before {
   content: '';
   position: absolute;
   top: 100%;
+  left: 0%;
   width: 100%;
   height: 3px;
+
   background-color: rgba(43, 1, 82, .5);
   transform: scaleX(0);
   /* transform-origin: left; */
@@ -25,12 +30,11 @@
   background-color: rgba(43, 1, 82, .4);
 }
 
-.BtnLink:link,
-.BtnLink:visited {
+.BtnLink {
   color: #fff;
   text-decoration: none;
   display: block;
-  padding: 15px 30px;
+
   position: relative;
   z-index: 10;
 }
