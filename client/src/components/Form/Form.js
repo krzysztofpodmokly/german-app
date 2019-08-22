@@ -13,7 +13,13 @@ const Form = () => {
         type: 'text',
         placeholder: 'Type German Noun'
       },
-      value: ''
+      value: '',
+      validation: {
+        required: true
+      },
+      valid: false,
+      touched: false,
+      errorMessage: 'Please add German noun'
     },
     article: {
       elementtype: 'input',
@@ -21,7 +27,14 @@ const Form = () => {
         type: 'text',
         placeholder: 'Add Proper Article'
       },
-      value: ''
+      value: '',
+      validation: {
+        required: true,
+        constantLength: 3
+      },
+      valid: false,
+      touched: false,
+      errorMessage: 'Article must contain exactly 3 letters'
     },
     wordTranslated: {
       elementtype: 'input',
@@ -29,7 +42,13 @@ const Form = () => {
         type: 'text',
         placeholder: 'Add Polish Translation'
       },
-      value: ''
+      value: '',
+      validation: {
+        required: true
+      },
+      valid: false,
+      touched: false,
+      errorMessage: 'Please add a Polish translation'
     },
     sentenceOne: {
       elementtype: 'textarea',
@@ -37,16 +56,30 @@ const Form = () => {
         type: 'text',
         placeholder: 'Type a sentence which includes your chosen word'
       },
-      value: ''
+      value: '',
+      validation: {
+        required: true
+      },
+      valid: false,
+      touched: false,
+      errorMessage: 'Please add a sentence with chosen word'
     },
     sentenceTwo: {
       elementtype: 'textarea',
       elementconfig: {
         placeholder: 'Give an example of another sentence with chosen word'
       },
-      value: ''
+      value: '',
+      validation: {
+        required: true
+      },
+      valid: false,
+      touched: false,
+      errorMessage: 'Please add a sentence with chosen word'
     }
   });
+
+  const [formIsValid, setFormIsValid] = useState(false);
 
   const formElements = [];
   for (let key in translationForm) {
@@ -56,6 +89,28 @@ const Form = () => {
     });
   }
 
+  const checkValidity = (value, rules) => {
+    let isValid = true;
+
+    if (!rules) {
+      return true; // if no validation rules are define return true
+    }
+
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid; // false overwrites true, if one of the values is false whole expression is false
+    }
+
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+
+    if (rules.constantLength) {
+      isValid = value.length === 3 && isValid;
+    }
+
+    return isValid;
+  };
+
   const onInputChange = (e, identifier) => {
     const updatedTranslationForm = {
       ...translationForm
@@ -64,10 +119,23 @@ const Form = () => {
     // deep clone of translationForm
     const updatedFormElement = { ...updatedTranslationForm[identifier] };
     updatedFormElement.value = e.target.value;
-
+    updatedFormElement.valid = checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedFormElement.touched = true;
     updatedTranslationForm[identifier] = updatedFormElement;
+
+    // checking overall form validation
+    let isFormValid = true;
+    for (let inputIdentifiers in updatedTranslationForm) {
+      isFormValid =
+        updatedTranslationForm[inputIdentifiers].valid && isFormValid;
+    }
+
     setTranslationForm(updatedTranslationForm);
-    console.log(translationForm);
+    setFormIsValid(isFormValid);
+    console.log(isFormValid);
   };
 
   const onFormSubmit = e => {
@@ -92,10 +160,14 @@ const Form = () => {
           elementtype={formElement.config.elementtype}
           elementconfig={formElement.config.elementconfig}
           value={formElement.config.value}
+          invalid={!formElement.config.valid}
+          shouldValidate={formElement.config.validation}
+          touched={formElement.config.touched}
+          errorMessage={formElement.config.errorMessage}
           changed={e => onInputChange(e, formElement.id)}
         />
       ))}
-      <Button>SUBMIT TRANSLATION</Button>
+      <Button disabled={!formIsValid}>SUBMIT TRANSLATION</Button>
     </form>
   );
 
