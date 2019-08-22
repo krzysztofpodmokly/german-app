@@ -13,11 +13,7 @@ const Form = () => {
         type: 'text',
         placeholder: 'Type German Noun'
       },
-      value: '',
-      validation: {
-        required: true
-      },
-      valid: false
+      value: ''
     },
     article: {
       elementtype: 'input',
@@ -25,23 +21,15 @@ const Form = () => {
         type: 'text',
         placeholder: 'Add Proper Article'
       },
-      value: '',
-      validation: {
-        required: true,
-        constantLength: 3
-      },
-      valid: false
+      value: ''
     },
     wordTranslated: {
       elementtype: 'input',
       elementconfig: {
+        type: 'text',
         placeholder: 'Add Polish Translation'
       },
-      value: '',
-      validation: {
-        required: true
-      },
-      valid: false
+      value: ''
     },
     sentenceOne: {
       elementtype: 'textarea',
@@ -49,75 +37,47 @@ const Form = () => {
         type: 'text',
         placeholder: 'Type a sentence which includes your chosen word'
       },
-      value: '',
-      validation: {
-        required: true
-      },
-      valid: false
+      value: ''
     },
     sentenceTwo: {
       elementtype: 'textarea',
       elementconfig: {
         placeholder: 'Give an example of another sentence with chosen word'
       },
-      value: '',
-      validation: {
-        required: true
-      },
-      valid: false
+      value: ''
     }
   });
 
-  const formElementsArray = [];
-  for (const key in translationForm) {
-    formElementsArray.push({
+  const formElements = [];
+  for (let key in translationForm) {
+    formElements.push({
       id: key,
       config: translationForm[key]
     });
   }
 
-  const checkValidity = (value, rules) => {
-    let isValid = true;
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.constantLength) {
-      isValid = value.length === rules.constantLength && isValid;
-    }
-
-    return isValid;
-  };
-
-  const inputChangedHandler = (e, identifier) => {
-    const updatedFormData = {
+  const onInputChange = (e, identifier) => {
+    const updatedTranslationForm = {
       ...translationForm
     };
 
-    // changing nested object in an immutable way
-    const updatedInnerFormData = {
-      ...updatedFormData[identifier]
-    };
+    // deep clone of translationForm
+    const updatedFormElement = { ...updatedTranslationForm[identifier] };
+    updatedFormElement.value = e.target.value;
 
-    updatedInnerFormData.value = e.target.value;
-    updatedInnerFormData.valid = checkValidity(
-      updatedInnerFormData.value,
-      updatedInnerFormData.validation
-    );
-    updatedFormData[identifier] = updatedInnerFormData;
-    setTranslationForm(updatedFormData);
+    updatedTranslationForm[identifier] = updatedFormElement;
+    setTranslationForm(updatedTranslationForm);
+    console.log(translationForm);
   };
 
   const onFormSubmit = e => {
     e.preventDefault();
     const formData = {};
-    for (const key in translationForm) {
-      formData[key] = translationForm[key].value;
+    for (let formElementIdentifier in translationForm) {
+      formData[formElementIdentifier] =
+        translationForm[formElementIdentifier].value;
     }
+
     console.log(formData);
   };
 
@@ -126,19 +86,16 @@ const Form = () => {
       onSubmit={e => onFormSubmit(e)}
       className={[classes.Form, globalClasses.Wrapper].join(' ')}
     >
-      {formElementsArray.map(formElement => {
-        return (
-          <Input
-            key={formElement.id}
-            elementType={formElement.config.elementtype}
-            elementConfig={formElement.config.elementconfig}
-            value={formElement.config.value}
-            invalid={!formElement.config.valid}
-            changed={e => inputChangedHandler(e, formElement.id)}
-          />
-        );
-      })}
-      <Button clicked={e => onFormSubmit(e)}>SUBMIT TRANSLATION</Button>
+      {formElements.map(formElement => (
+        <Input
+          key={formElement.id}
+          elementtype={formElement.config.elementtype}
+          elementconfig={formElement.config.elementconfig}
+          value={formElement.config.value}
+          changed={e => onInputChange(e, formElement.id)}
+        />
+      ))}
+      <Button>SUBMIT TRANSLATION</Button>
     </form>
   );
 
