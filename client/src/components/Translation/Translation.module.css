@@ -20,34 +20,3 @@
   text-align: center;
   /* box-shadow: 0 10px 20px -6px #2B0152; */
 }
-
-.Wrapper {
-  position: relative;
-}
-
-.Wrapper::after {
-  content: '';
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  opacity: .8;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.General {
-  position: relative;
-  z-index: 2;
-  font-weight: 200;
-  padding: 5px 20px;
-}
-
-.MarginTopMedium {
-  margin-top: 20px;
-}
-
-.MarginTopSmall {
-  margin-top: 10px;
-}
