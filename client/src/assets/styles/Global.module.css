@@ -28,3 +28,9 @@
 .MarginTopSmall {
   margin-top: 10px;
 }
+
+.Header {
+  font-weight: 200;
+  color: #2b0152;
+  text-align: center;
+}

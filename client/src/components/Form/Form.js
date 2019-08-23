@@ -51,7 +51,7 @@ const Form = () => {
       errorMessage: 'Please add a Polish translation'
     },
     sentenceOne: {
-      elementtype: 'textarea',
+      elementtype: 'input',
       elementconfig: {
         type: 'text',
         placeholder: 'Type a sentence which includes your chosen word'
@@ -65,9 +65,10 @@ const Form = () => {
       errorMessage: 'Please add a sentence with chosen word'
     },
     sentenceTwo: {
-      elementtype: 'textarea',
+      elementtype: 'input',
       elementconfig: {
-        placeholder: 'Give an example of another sentence with chosen word'
+        type: 'text',
+        placeholder: 'Type another sentence which includes your chosen word'
       },
       value: '',
       validation: {
@@ -154,6 +155,7 @@ const Form = () => {
       onSubmit={e => onFormSubmit(e)}
       className={[classes.Form, globalClasses.Wrapper].join(' ')}
     >
+      <h1 className={globalClasses.Header}>New Translation Form</h1>
       {formElements.map(formElement => (
         <Input
           key={formElement.id}
@@ -164,6 +166,7 @@ const Form = () => {
           shouldValidate={formElement.config.validation}
           touched={formElement.config.touched}
           errorMessage={formElement.config.errorMessage}
+          label={formElement.config.elementconfig.label}
           changed={e => onInputChange(e, formElement.id)}
         />
       ))}

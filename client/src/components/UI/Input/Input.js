@@ -47,10 +47,12 @@ const Input = props => {
   }
 
   return (
-    <div className={classes.Input}>
-      <label className={classes.Label}>{props.label}</label>
+    <div>
       {errorMessage}
-      {inputElement}
+      <div className={classes.Input}>
+        <label className={classes.Label}>{props.label}</label>
+        {inputElement}
+      </div>
     </div>
   );
 };
