@@ -1,16 +1,20 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import classes from './Translation.module.css';
 import globalClasses from '../../assets/styles/Global.module.css';
 import Button from '../UI/Button/Button';
+import * as actions from '../../store/actions';
 
-const Translation = props => {
+const Translation = ({ translation, fetchTranslationData }) => {
+  console.log(translation);
+
   return (
     <Fragment>
       <div className={globalClasses.Wrapper}>
         <div className={classes.Word}>der Pfirsich</div>
       </div>
-      <Button>REVEAL TRANSLATION</Button>
+      <Button clicked={fetchTranslationData}>REVEAL TRANSLATION</Button>
       <div
         className={[globalClasses.Wrapper, globalClasses.MarginTopMedium].join(
           ' '
@@ -36,4 +40,19 @@ const Translation = props => {
   );
 };
 
-export default Translation;
+const mapStateToProps = state => {
+  return {
+    translation: state.translation.wordData
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTranslationData: () => dispatch(actions.fetchTranslation())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Translation);

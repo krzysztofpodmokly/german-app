@@ -3,7 +3,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Record = require('../../models/Record');
 
-// @route     POST api/translations
+// @route     POST /api/translations
 // @desc      Create record in database with german word, translation and a sentence with this word
 // @access    Public
 router.post(
@@ -57,7 +57,7 @@ router.post(
   }
 );
 
-// @route     GET api/translations
+// @route     GET /api/translations/random
 // @desc      Retrieve random translation from database
 // @access    Public
 router.get('/random', async (req, res) => {
@@ -72,7 +72,7 @@ router.get('/random', async (req, res) => {
   }
 });
 
-// @route     GET api/translations
+// @route     GET /api/translations
 // @desc      Retrieve random translation from database
 // @access    Public
 router.get('/', async (req, res) => {
