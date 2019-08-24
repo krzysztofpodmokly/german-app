@@ -1,1 +1,1 @@
-export { fetchTranslation } from './translation';
+export { fetchTranslationSuccess } from './translation';

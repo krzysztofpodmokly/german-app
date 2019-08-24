@@ -2,7 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initState = {
   wordData: {},
-  loading: true,
+  loading: false,
   error: {}
 };
 
@@ -10,6 +10,11 @@ const wordReducer = (state = initState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case actionTypes.FETCH_TRANSLATION_START:
+      return {
+        ...state,
+        loading: true
+      };
     case actionTypes.FETCH_TRANSLATION_SUCCESS:
       return {
         ...state,
