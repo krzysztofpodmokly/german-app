@@ -1,1 +1,2 @@
-export { fetchTranslationSuccess } from './translation';
+export { fetchTranslationSuccess } from './word';
+export { postTranslationSuccess } from './translation';

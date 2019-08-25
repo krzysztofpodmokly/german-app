@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import classes from './Form.module.css';
 import globalClasses from '../../assets/styles/Global.module.css';
+import * as actions from '../../store/actions';
 
-const Form = () => {
+const Form = props => {
   const [translationForm, setTranslationForm] = useState({
     word: {
       elementtype: 'input',
@@ -146,8 +148,7 @@ const Form = () => {
       formData[formElementIdentifier] =
         translationForm[formElementIdentifier].value;
     }
-
-    console.log(formData);
+    props.postNewTranslation(formData);
   };
 
   let form = (
@@ -177,4 +178,20 @@ const Form = () => {
   return <div>{form}</div>;
 };
 
-export default Form;
+const mapStateToProps = state => {
+  return {
+    error: state.translation.error
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postNewTranslation: formData =>
+      dispatch(actions.postTranslationSuccess(formData))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Form);

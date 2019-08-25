@@ -1,30 +1,29 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const fetchTranslationStart = () => {
+export const postTranslationStart = () => {
   return {
     type: actionTypes.FETCH_TRANSLATION_START
   };
 };
 
-export const fetchTranslationSuccess = () => async dispatch => {
+export const postTranslationSuccess = translationData => async dispatch => {
   try {
-    dispatch(fetchTranslationStart());
-    const res = await axios.get('/api/translations/random'); //res.data => array always with one element => check GET /api/translations/random route
+    dispatch(postTranslationStart());
 
-    const [data] = res.data;
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const res = await axios.post('/api/translations', translationData, config);
 
     dispatch({
       type: actionTypes.FETCH_TRANSLATION_SUCCESS,
-      payload: data
+      payload: res.data
     });
   } catch (error) {
-    dispatch({
-      type: actionTypes.FETCH_TRANSLATION_FAILURE,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status
-      }
-    });
+    dispatch({ type: actionTypes.POST_TRANSLATION_FAILURE, payload: error });
   }
 };

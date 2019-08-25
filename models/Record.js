@@ -14,20 +14,14 @@ const RecordSchema = new Schema({
     type: String,
     required: true
   },
-  sentences: [
-    {
-      sentence: {
-        type: String,
-        required: true
-      }
-    },
-    {
-      sentence: {
-        type: String,
-        required: true
-      }
-    }
-  ],
+  sentenceOne: {
+    type: String,
+    required: true
+  },
+  sentenceTwo: {
+    type: String,
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now

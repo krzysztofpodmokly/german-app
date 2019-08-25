@@ -4,12 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+
 import wordReducer from './store/reducers/wordReducer';
+import translationReducer from './store/reducers/translationReducer';
+
 import App from './App';
 import './index.css';
 
 const rootReducer = combineReducers({
-  translation: wordReducer
+  word: wordReducer,
+  translation: translationReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
