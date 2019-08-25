@@ -8,6 +8,7 @@ import * as actions from '../../store/actions';
 import Spinner from '../UI/Spinner/Spinner';
 
 const Translation = ({ translation, loading, error, fetchTranslationData }) => {
+  console.log(error);
   // check fetched object on page load, if it is empty show nothing
   const renderContent =
     Object.entries(translation).length !== 0 && !loading ? (
@@ -34,21 +35,34 @@ const Translation = ({ translation, loading, error, fetchTranslationData }) => {
             ' '
           )}
         >
-          {translation.sentences.map(sentence => (
+          {/* {translation.sentences.map(sentence => (
             <div
               key={sentence._id}
               className={[classes.Sentence, globalClasses.General].join(' ')}
             >
               {sentence.sentence}
             </div>
-          ))}
+          ))} */}
         </div>
       </Fragment>
     ) : null;
 
   return (
     <Fragment>
-      <Button clicked={fetchTranslationData}>MAKE IT RANDOM!</Button>
+      <div
+        className={
+          Object.keys(translation).length === 0 && !loading
+            ? [globalClasses.Wrapper, globalClasses.PaddingHuge].join(' ')
+            : null
+        }
+      >
+        {Object.keys(translation).length === 0 && !loading ? (
+          <h1 className={globalClasses.Header}>
+            Learn German By Drawing Random Words
+          </h1>
+        ) : null}
+        <Button clicked={fetchTranslationData}>DRAW!</Button>
+      </div>
       {loading ? <Spinner /> : renderContent}
     </Fragment>
   );
@@ -56,9 +70,9 @@ const Translation = ({ translation, loading, error, fetchTranslationData }) => {
 
 const mapStateToProps = state => {
   return {
-    translation: state.translation.wordData,
-    loading: state.translation.loading,
-    error: state.translation.error
+    translation: state.word.wordData,
+    loading: state.word.loading,
+    error: state.word.error
   };
 };
 

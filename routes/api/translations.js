@@ -12,14 +12,16 @@ router.post(
     check('word', 'Please add a german noun').isString(),
     check('article', 'Please enter an article')
       .isString()
-      .isLength(3),
+      .isLength({ min: 3 }),
     check('wordTranslated', 'Please add a proper translation').isString(),
-    check('sentences', 'Please add two translations')
-      .custom(sentences => sentences && sentences.length === 2)
-      .withMessage('Provide two sentences'),
-    check('sentences.*.sentence', 'Sentence must be a string')
-      .isLength({ min: 2 })
-      .matches(/^[a-zA-Z ]*$/, 'i')
+    check('sentenceOne', 'Please add a sentence').isString(),
+    check('sentenceTwo', 'Please add a sentence').isString()
+    // check('sentences', 'Please add two translations')
+    //   .custom(sentences => sentences && sentences.length === 2)
+    //   .withMessage('Provide two sentences'),
+    // check('sentences.*.sentence', 'Sentence must be a string')
+    //   .isLength({ min: 2 })
+    //   .matches(/^[a-zA-Z ]*$/, 'i')
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -27,7 +29,13 @@ router.post(
       return res.status(400).send({ errors: errors.array() });
     }
 
-    const { word, article, wordTranslated, sentences } = req.body;
+    const {
+      word,
+      article,
+      wordTranslated,
+      sentenceOne,
+      sentenceTwo
+    } = req.body;
 
     try {
       // check word OR translation if was already added
@@ -45,9 +53,10 @@ router.post(
       if (word) translationFields.word = word;
       if (article) translationFields.article = article;
       if (wordTranslated) translationFields.wordTranslated = wordTranslated;
-      if (sentences.length > 0) translationFields.sentences = sentences;
-
+      if (sentenceOne) translationFields.sentenceOne = sentenceOne;
+      if (sentenceTwo) translationFields.sentenceTwo = sentenceTwo;
       translatedWord = new Record(translationFields);
+      console.log(translatedWord);
       await translatedWord.save();
       res.send(translatedWord);
     } catch (error) {
