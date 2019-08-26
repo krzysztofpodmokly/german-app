@@ -7,42 +7,53 @@ import Button from '../UI/Button/Button';
 import * as actions from '../../store/actions';
 import Spinner from '../UI/Spinner/Spinner';
 
-const Translation = ({ translation, loading, error, fetchTranslationData }) => {
-  console.log(error);
+const Translation = ({ word, loading, error, fetchTranslationData }) => {
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -300%)'
+  };
+
   // check fetched object on page load, if it is empty show nothing
   const renderContent =
-    Object.entries(translation).length !== 0 && !loading ? (
+    Object.entries(word).length !== 0 && !loading ? (
       <Fragment>
-        <div className={globalClasses.Wrapper}>
-          <div className={classes.Word}>
-            {translation.article} {translation.word}
+        <div className={globalClasses.Container}>
+          <div className={globalClasses.Wrapper}>
+            <div className={classes.Word}>
+              {word.article} {word.word}
+            </div>
           </div>
-        </div>
-        <div
-          className={[
-            globalClasses.Wrapper,
-            globalClasses.MarginTopMedium
-          ].join(' ')}
-        >
           <div
-            className={[classes.Translation, globalClasses.General].join(' ')}
+            className={[
+              globalClasses.Wrapper,
+              globalClasses.MarginTopMedium
+            ].join(' ')}
           >
-            {translation.wordTranslated}
-          </div>
-        </div>
-        <div
-          className={[globalClasses.Wrapper, globalClasses.MarginTopSmall].join(
-            ' '
-          )}
-        >
-          {/* {translation.sentences.map(sentence => (
             <div
-              key={sentence._id}
+              className={[classes.Translation, globalClasses.General].join(' ')}
+            >
+              {word.wordTranslated}
+            </div>
+          </div>
+          <div
+            className={[
+              globalClasses.Wrapper,
+              globalClasses.MarginTopSmall
+            ].join(' ')}
+          >
+            <div
               className={[classes.Sentence, globalClasses.General].join(' ')}
             >
-              {sentence.sentence}
+              {word.sentenceOne}
             </div>
-          ))} */}
+            <div
+              className={[classes.Sentence, globalClasses.General].join(' ')}
+            >
+              {word.sentenceTwo}
+            </div>
+          </div>
         </div>
       </Fragment>
     ) : null;
@@ -51,17 +62,21 @@ const Translation = ({ translation, loading, error, fetchTranslationData }) => {
     <Fragment>
       <div
         className={
-          Object.keys(translation).length === 0 && !loading
+          Object.keys(word).length === 0 && !loading
             ? [globalClasses.Wrapper, globalClasses.PaddingHuge].join(' ')
             : null
         }
       >
-        {Object.keys(translation).length === 0 && !loading ? (
+        {Object.keys(word).length === 0 && !loading ? (
           <h1 className={globalClasses.Header}>
             Learn German By Drawing Random Words
           </h1>
         ) : null}
-        <Button clicked={fetchTranslationData}>DRAW!</Button>
+        {loading ? null : (
+          <Button style={style} clicked={fetchTranslationData}>
+            DRAW!
+          </Button>
+        )}
       </div>
       {loading ? <Spinner /> : renderContent}
     </Fragment>
@@ -70,7 +85,7 @@ const Translation = ({ translation, loading, error, fetchTranslationData }) => {
 
 const mapStateToProps = state => {
   return {
-    translation: state.word.wordData,
+    word: state.word.wordData,
     loading: state.word.loading,
     error: state.word.error
   };
@@ -78,7 +93,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTranslationData: () => dispatch(actions.fetchTranslationSuccess())
+    fetchTranslationData: () => {
+      dispatch(actions.fetchTranslationSuccess());
+    }
   };
 };
 

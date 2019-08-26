@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Input from '../UI/Input/Input';
@@ -138,7 +139,6 @@ const Form = props => {
 
     setTranslationForm(updatedTranslationForm);
     setFormIsValid(isFormValid);
-    console.log(isFormValid);
   };
 
   const onFormSubmit = e => {
@@ -148,7 +148,10 @@ const Form = props => {
       formData[formElementIdentifier] =
         translationForm[formElementIdentifier].value;
     }
+
     props.postNewTranslation(formData);
+    // redirect after submitting new record
+    props.history.replace('/');
   };
 
   let form = (

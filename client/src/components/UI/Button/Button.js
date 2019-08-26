@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import classes from './Button.module.css';
+import * as actions from '../../../store/actions';
 
 const Button = props => {
+  console.log(props.show);
+
   return (
     <button
+      style={props.style}
       disabled={props.disabled}
-      onClick={props.clicked}
+      onClick={() => {
+        props.showButton();
+        props.clicked();
+      }}
       className={[classes.Btn, classes.BtnLink].join(' ')}
     >
       {props.children}
@@ -13,4 +21,19 @@ const Button = props => {
   );
 };
 
-export default Button;
+const mapStateToProps = state => {
+  return {
+    show: state.button.show
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showButton: () => dispatch(actions.showButton())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Button);

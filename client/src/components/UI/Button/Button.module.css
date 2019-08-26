@@ -27,18 +27,18 @@
 
 .Btn:hover::before {
   transform: scaleX(1);
+
 }
 
 .Btn:hover {
   background-color: rgba(43, 1, 82, 0.4);
+  cursor: pointer;
 }
 
 .BtnLink {
   color: #fff;
   text-decoration: none;
   display: block;
-
-  position: relative;
   z-index: 10;
 }
 

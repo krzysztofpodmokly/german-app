@@ -1,0 +1,17 @@
+.move-up-enter {
+  /* transform: translateY(30vw); */
+}
+
+.move-up-enter-active {
+  animation: moveUp 1s ease
+}
+
+@keyframes moveUp {
+  0% {
+    transform: translateY(0)
+  }
+
+  100% {
+    transform: translateY(30vh);
+  }
+}

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Transition } from 'react-transition-group';
 
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './MobileMenu.module.css';
@@ -10,9 +11,12 @@ const MobileMenu = props => {
     props.open ? classes.Open : classes.Close
   ].join(' ');
 
+  console.log(props.open);
   return (
     <Fragment>
-      <Backdrop show={props.open} clicked={props.closed} />
+      {props.open ? (
+        <Backdrop show={props.open} clicked={props.closed} />
+      ) : null}
       <div className={conditionalClasses}>
         <nav>
           <NavigationItems />

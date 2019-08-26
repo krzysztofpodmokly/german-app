@@ -13,7 +13,6 @@ export const fetchTranslationSuccess = () => async dispatch => {
     const res = await axios.get('/api/translations/random'); //res.data => array always with one element => check GET /api/translations/random route
 
     const [data] = res.data;
-
     dispatch({
       type: actionTypes.FETCH_TRANSLATION_SUCCESS,
       payload: data
