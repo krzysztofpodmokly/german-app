@@ -4,8 +4,6 @@ import classes from './Button.module.css';
 import * as actions from '../../../store/actions';
 
 const Button = props => {
-  console.log(props.show);
-
   return (
     <button
       style={props.style}

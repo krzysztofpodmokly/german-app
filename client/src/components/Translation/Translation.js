@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { Transition, CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 
 import classes from './Translation.module.css';
@@ -7,7 +8,7 @@ import Button from '../UI/Button/Button';
 import * as actions from '../../store/actions';
 import Spinner from '../UI/Spinner/Spinner';
 
-const Translation = ({ word, loading, error, fetchTranslationData }) => {
+const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -20,7 +21,12 @@ const Translation = ({ word, loading, error, fetchTranslationData }) => {
     Object.entries(word).length !== 0 && !loading ? (
       <Fragment>
         <div className={globalClasses.Container}>
-          <div className={globalClasses.Wrapper}>
+          <div
+            className={[
+              globalClasses.Wrapper,
+              show ? globalClasses.FadeInLeft : null
+            ].join(' ')}
+          >
             <div className={classes.Word}>
               {word.article} {word.word}
             </div>
@@ -28,7 +34,8 @@ const Translation = ({ word, loading, error, fetchTranslationData }) => {
           <div
             className={[
               globalClasses.Wrapper,
-              globalClasses.MarginTopMedium
+              globalClasses.MarginTopMedium,
+              show ? globalClasses.FadeInRight : null
             ].join(' ')}
           >
             <div
@@ -40,7 +47,8 @@ const Translation = ({ word, loading, error, fetchTranslationData }) => {
           <div
             className={[
               globalClasses.Wrapper,
-              globalClasses.MarginTopSmall
+              globalClasses.MarginTopSmall,
+              show ? globalClasses.FadeInLeft : null
             ].join(' ')}
           >
             <div
@@ -87,7 +95,8 @@ const mapStateToProps = state => {
   return {
     word: state.word.wordData,
     loading: state.word.loading,
-    error: state.word.error
+    error: state.word.error,
+    show: state.button.show
   };
 };
 

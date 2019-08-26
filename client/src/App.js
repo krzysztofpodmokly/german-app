@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Layout from './hoc/Layout/Layout';
 import TranslationGenerator from './containers/TranslationGenerator/TranslationGenerator';
@@ -11,10 +12,18 @@ const App = () => {
     <div>
       <Landing />
       <Layout>
-        <Switch>
-          <Route path='/new-translation' component={Form} />
-          <Route exact path='/' component={TranslationGenerator} />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition key={location.key} timeout={500} classNames='fade'>
+                <Switch location={location}>
+                  <Route path='/new-translation' component={Form} />
+                  <Route exact path='/' component={TranslationGenerator} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </Layout>
     </div>
   );
