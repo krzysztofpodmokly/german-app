@@ -4,11 +4,11 @@ import Translation from '../../components/Translation/Translation';
 
 const TranslationGenerator = props => {
   return (
-    <Fragment>
+    <div className='page'>
       <section className='section-translation'>
         <Translation />
       </section>
-    </Fragment>
+    </div>
   );
 };
 

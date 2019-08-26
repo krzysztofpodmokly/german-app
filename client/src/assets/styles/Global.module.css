@@ -1,5 +1,6 @@
 .Wrapper {
   position: relative;
+  /* top: 200px; */
 }
 
 .Wrapper::after {
@@ -33,10 +34,44 @@
   font-weight: 200;
   color: #2b0152;
   text-align: center;
+  padding: 20px 30px;
+  font-size: 30px;
 }
 
 .Container {
   text-align: center;
   position: relative;
   top: 80px;
+}
+
+.FadeInLeft {
+  animation: fadeInLeft .6s ease;
+}
+
+.FadeInRight {
+  animation: fadeInRight .6s ease;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

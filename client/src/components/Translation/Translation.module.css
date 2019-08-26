@@ -20,3 +20,19 @@
   text-align: center;
   /* box-shadow: 0 10px 20px -6px #2B0152; */
 }
+
+.Show {
+  animation: fadeIn .6s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

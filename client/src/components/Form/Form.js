@@ -178,7 +178,7 @@ const Form = props => {
     </form>
   );
 
-  return <div>{form}</div>;
+  return <div className='page'>{form}</div>;
 };
 
 const mapStateToProps = state => {
