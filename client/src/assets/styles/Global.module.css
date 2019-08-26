@@ -34,3 +34,9 @@
   color: #2b0152;
   text-align: center;
 }
+
+.Container {
+  text-align: center;
+  position: relative;
+  top: 80px;
+}

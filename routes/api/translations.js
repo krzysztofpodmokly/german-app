@@ -16,6 +16,8 @@ router.post(
     check('wordTranslated', 'Please add a proper translation').isString(),
     check('sentenceOne', 'Please add a sentence').isString(),
     check('sentenceTwo', 'Please add a sentence').isString()
+
+    // if sentences is an array
     // check('sentences', 'Please add two translations')
     //   .custom(sentences => sentences && sentences.length === 2)
     //   .withMessage('Provide two sentences'),
@@ -56,7 +58,6 @@ router.post(
       if (sentenceOne) translationFields.sentenceOne = sentenceOne;
       if (sentenceTwo) translationFields.sentenceTwo = sentenceTwo;
       translatedWord = new Record(translationFields);
-      console.log(translatedWord);
       await translatedWord.save();
       res.send(translatedWord);
     } catch (error) {

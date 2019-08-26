@@ -7,13 +7,15 @@ import thunk from 'redux-thunk';
 
 import wordReducer from './store/reducers/wordReducer';
 import translationReducer from './store/reducers/translationReducer';
+import buttonReducer from './store/reducers/buttonReducer';
 
 import App from './App';
 import './index.css';
 
 const rootReducer = combineReducers({
   word: wordReducer,
-  translation: translationReducer
+  translation: translationReducer,
+  button: buttonReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
