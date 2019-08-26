@@ -178,7 +178,11 @@ const Form = props => {
     </form>
   );
 
-  return <div className='page'>{form}</div>;
+  return (
+    <div className='page'>
+      <div className={classes.FormContainer}>{form}</div>
+    </div>
+  );
 };
 
 const mapStateToProps = state => {
