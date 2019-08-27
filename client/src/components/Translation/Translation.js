@@ -1,5 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { Transition, CSSTransition } from 'react-transition-group';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import classes from './Translation.module.css';
@@ -22,13 +21,26 @@ const Translation = ({
     transform: 'translate(-50%, -300%)'
   };
 
+  // Function which returns bold word
   const boldString = (str, wordToMatch) => {
-    str.split(' ').map(string => {
-      return string === wordToMatch ? <b>{string} </b> : string + ' ';
-    });
+    return (
+      Object.entries(word).length !== 0 &&
+      !loading &&
+      str.split(' ').map(string => {
+        return string === wordToMatch ? (
+          <b key={string} style={{ fontWeight: 400 }}>
+            {string}{' '}
+          </b>
+        ) : (
+          string + ' '
+        );
+      })
+    );
   };
 
-  console.log('ERROR => ', error);
+  const firstSentence = boldString(word.sentenceOne, word.word);
+  const secondSentence = boldString(word.sentenceTwo, word.word);
+
   // check fetched object on page load, if it is empty show nothing
   const renderContent =
     Object.entries(word).length !== 0 && !loading ? (
@@ -67,28 +79,12 @@ const Translation = ({
             <div
               className={[classes.Sentence, globalClasses.General].join(' ')}
             >
-              {word.sentenceOne.split(' ').map(string => {
-                return string === word.word ? (
-                  <b key={string} style={{ fontWeight: 400 }}>
-                    {string}{' '}
-                  </b>
-                ) : (
-                  string + ' '
-                );
-              })}
+              {firstSentence}
             </div>
             <div
               className={[classes.Sentence, globalClasses.General].join(' ')}
             >
-              {word.sentenceTwo.split(' ').map(string => {
-                return string === word.word ? (
-                  <b key={string} style={{ fontWeight: 400 }}>
-                    {string}{' '}
-                  </b>
-                ) : (
-                  string + ' '
-                );
-              })}
+              {secondSentence}
             </div>
           </div>
         </div>
@@ -110,13 +106,11 @@ const Translation = ({
           </h1>
         ) : null}
         {loading ? null : (
-          <Button
-            style={style}
-            clicked={fetchTranslationData}
-            className={clicked ? classes.MoveUp : null}
-          >
-            DRAW!
-          </Button>
+          <div className={clicked ? globalClasses.BtnFadeIn : null}>
+            <Button style={style} clicked={fetchTranslationData}>
+              DRAW!
+            </Button>
+          </div>
         )}
       </div>
       {loading ? <Spinner /> : renderContent}

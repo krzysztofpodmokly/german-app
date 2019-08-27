@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Transition } from 'react-transition-group';
 
 import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './MobileMenu.module.css';
