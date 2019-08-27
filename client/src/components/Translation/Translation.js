@@ -8,7 +8,13 @@ import Button from '../UI/Button/Button';
 import * as actions from '../../store/actions';
 import Spinner from '../UI/Spinner/Spinner';
 
-const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
+const Translation = ({
+  word,
+  loading,
+  error,
+  fetchTranslationData,
+  clicked
+}) => {
   const style = {
     position: 'absolute',
     top: '50%',
@@ -16,6 +22,13 @@ const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
     transform: 'translate(-50%, -300%)'
   };
 
+  const boldString = (str, wordToMatch) => {
+    str.split(' ').map(string => {
+      return string === wordToMatch ? <b>{string} </b> : string + ' ';
+    });
+  };
+
+  console.log('ERROR => ', error);
   // check fetched object on page load, if it is empty show nothing
   const renderContent =
     Object.entries(word).length !== 0 && !loading ? (
@@ -24,7 +37,7 @@ const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
           <div
             className={[
               globalClasses.Wrapper,
-              show ? globalClasses.FadeInLeft : null
+              clicked ? globalClasses.FadeInLeft : null
             ].join(' ')}
           >
             <div className={classes.Word}>
@@ -35,7 +48,7 @@ const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
             className={[
               globalClasses.Wrapper,
               globalClasses.MarginTopMedium,
-              show ? globalClasses.FadeInRight : null
+              clicked ? globalClasses.FadeInRight : null
             ].join(' ')}
           >
             <div
@@ -48,18 +61,34 @@ const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
             className={[
               globalClasses.Wrapper,
               globalClasses.MarginTopSmall,
-              show ? globalClasses.FadeInLeft : null
+              clicked ? globalClasses.FadeInLeft : null
             ].join(' ')}
           >
             <div
               className={[classes.Sentence, globalClasses.General].join(' ')}
             >
-              {word.sentenceOne}
+              {word.sentenceOne.split(' ').map(string => {
+                return string === word.word ? (
+                  <b key={string} style={{ fontWeight: 400 }}>
+                    {string}{' '}
+                  </b>
+                ) : (
+                  string + ' '
+                );
+              })}
             </div>
             <div
               className={[classes.Sentence, globalClasses.General].join(' ')}
             >
-              {word.sentenceTwo}
+              {word.sentenceTwo.split(' ').map(string => {
+                return string === word.word ? (
+                  <b key={string} style={{ fontWeight: 400 }}>
+                    {string}{' '}
+                  </b>
+                ) : (
+                  string + ' '
+                );
+              })}
             </div>
           </div>
         </div>
@@ -81,7 +110,11 @@ const Translation = ({ word, loading, error, fetchTranslationData, show }) => {
           </h1>
         ) : null}
         {loading ? null : (
-          <Button style={style} clicked={fetchTranslationData}>
+          <Button
+            style={style}
+            clicked={fetchTranslationData}
+            className={clicked ? classes.MoveUp : null}
+          >
             DRAW!
           </Button>
         )}
@@ -96,7 +129,7 @@ const mapStateToProps = state => {
     word: state.word.wordData,
     loading: state.word.loading,
     error: state.word.error,
-    show: state.button.show
+    clicked: state.button.clicked
   };
 };
 

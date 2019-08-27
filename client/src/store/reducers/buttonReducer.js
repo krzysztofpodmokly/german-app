@@ -9,7 +9,7 @@ const buttonReducer = (state = initState, { type, payload }) => {
     case actionTypes.SHOW_BUTTON:
       return {
         ...state,
-        show: true
+        clicked: true
       };
     default:
       return state;

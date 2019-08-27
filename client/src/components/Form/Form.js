@@ -174,7 +174,9 @@ const Form = props => {
           changed={e => onInputChange(e, formElement.id)}
         />
       ))}
-      <Button disabled={!formIsValid}>SUBMIT TRANSLATION</Button>
+      <Button disabled={!formIsValid} clicked={() => true}>
+        SUBMIT TRANSLATION
+      </Button>
     </form>
   );
 
