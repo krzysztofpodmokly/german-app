@@ -20,17 +20,3 @@
   text-align: center;
   /* box-shadow: 0 10px 20px -6px #2B0152; */
 }
-
-.MoveUp {
-  animation: moveUpAndFade .3s ease-out;
-}
-
-@keyframes moveUpAndFade {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}

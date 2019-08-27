@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import classes from './Button.module.css';
 import * as actions from '../../../store/actions';
