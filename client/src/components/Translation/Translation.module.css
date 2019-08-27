@@ -21,18 +21,16 @@
   /* box-shadow: 0 10px 20px -6px #2B0152; */
 }
 
-.Show {
-  animation: fadeIn .6s ease;
+.MoveUp {
+  animation: moveUpAndFade .3s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes moveUpAndFade {
   0% {
-    opacity: 0;
-    transform: translateY(10vh);
+    opacity: 1;
   }
 
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0;
   }
 }
