@@ -6,7 +6,7 @@ import classes from './Landing.module.css';
 const Landing = props => {
   return (
     <Fragment>
-      <img className={classes.Landing} src={landingImg} />
+      <img className={classes.Landing} src={landingImg} alt='Landing' />
     </Fragment>
   );
 };
