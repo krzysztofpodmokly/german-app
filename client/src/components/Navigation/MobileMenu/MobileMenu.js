@@ -10,7 +10,6 @@ const MobileMenu = props => {
     props.open ? classes.Open : classes.Close
   ].join(' ');
 
-  console.log(props.open);
   return (
     <Fragment>
       {props.open ? (

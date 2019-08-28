@@ -1,12 +1,12 @@
 import React from 'react';
 import classes from './DatabaseItem.module.css';
 
-const DatabaseItem = () => {
+const DatabaseItem = props => {
   return (
     <div className={classes.Container}>
       <div className={classes.InnerContent}>
-        <div className={classes.Article}>Der</div>
-        <div className={classes.Word}>Arzt</div>
+        <div className={classes.Article}>{props.article}</div>
+        <div className={classes.Word}>{props.word}</div>
       </div>
     </div>
   );
