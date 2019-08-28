@@ -10,6 +10,7 @@ const NavigationItems = () => {
         Lottery
       </NavigationItem>
       <NavigationItem link='/new-translation'>New Translation</NavigationItem>
+      <NavigationItem link='/search-engine'>Search Engine</NavigationItem>
     </ul>
   );
 };

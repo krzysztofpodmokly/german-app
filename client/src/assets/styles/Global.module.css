@@ -1,6 +1,5 @@
 .Wrapper {
   position: relative;
-  /* top: 200px; */
 }
 
 .Wrapper::after {
@@ -28,6 +27,10 @@
 
 .MarginTopSmall {
   margin-top: 10px;
+}
+
+.PaddingMedium {
+  padding: 0 20px;
 }
 
 .Header {

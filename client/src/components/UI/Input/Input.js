@@ -22,6 +22,7 @@ const Input = props => {
           {...props.elementconfig}
           value={props.value}
           onChange={props.changed}
+          style={props.inputStyle}
         />
       );
       break;
@@ -32,6 +33,7 @@ const Input = props => {
           {...props.elementconfig}
           value={props.value}
           onChange={props.changed}
+          style={props.inputStyle}
         />
       );
       break;
@@ -42,6 +44,7 @@ const Input = props => {
           {...props.elementconfig}
           value={props.value}
           onChange={props.changed}
+          style={props.inputStyle}
         />
       );
   }
@@ -49,7 +52,7 @@ const Input = props => {
   return (
     <div>
       {errorMessage}
-      <div className={classes.Input}>
+      <div style={props.style} className={classes.Input}>
         <label className={classes.Label}>{props.label}</label>
         {inputElement}
       </div>
