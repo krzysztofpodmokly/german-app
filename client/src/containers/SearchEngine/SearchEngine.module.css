@@ -1,0 +1,16 @@
+.SearchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.SearchPosition {
+  top: 30px;
+  height: 85vh;
+  width: 90vw
+}
+
+.ContentBox {
+  display: flex;
+}

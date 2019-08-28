@@ -153,6 +153,10 @@ const Form = props => {
     props.history.replace('/');
   };
 
+  const inputStyle = {
+    width: '100%'
+  };
+
   let form = (
     <form
       onSubmit={e => onFormSubmit(e)}
@@ -170,6 +174,7 @@ const Form = props => {
           touched={formElement.config.touched}
           errorMessage={formElement.config.errorMessage}
           label={formElement.config.elementconfig.label}
+          inputStyle={inputStyle}
           changed={e => onInputChange(e, formElement.id)}
         />
       ))}

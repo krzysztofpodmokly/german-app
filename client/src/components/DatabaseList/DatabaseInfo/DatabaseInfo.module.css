@@ -1,0 +1,27 @@
+.DatabaseInfo {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.Word {
+  color: #2b0152;
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+.Translation {
+  color: #E66B16;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+.Sentence {
+  font-size: 20px;
+  color: #2b0152;
+  font-weight: 300;
+}
