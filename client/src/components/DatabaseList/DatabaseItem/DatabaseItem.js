@@ -5,8 +5,14 @@ const DatabaseItem = props => {
   return (
     <div className={classes.Container}>
       <div className={classes.InnerContent}>
-        <div className={classes.Article}>{props.article}</div>
-        <div className={classes.Word}>{props.word}</div>
+        <p className={classes.Article}>
+          {props.article} {props.word}
+        </p>
+        <div className={classes.BtnContainer}>
+          <button className={classes.BtnDelete}>
+            <i class='far fa-2x fa-times-circle'></i>
+          </button>
+        </div>
       </div>
     </div>
   );
