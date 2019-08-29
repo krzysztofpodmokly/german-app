@@ -7,6 +7,7 @@ import TranslationGenerator from './containers/TranslationGenerator/TranslationG
 import SearchEngine from './containers/SearchEngine/SearchEngine';
 import Landing from './components/Landing/Landing';
 import Form from './components/Form/Form';
+import DatabaseInfo from './components/DatabaseList/DatabaseInfo/DatabaseInfo';
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
                 <Switch location={location}>
                   <Route path='/new-translation' component={Form} />
                   <Route path='/search-engine' component={SearchEngine} />
-                  <Route exact path='/' component={TranslationGenerator} />
+                  <Route path='/' component={TranslationGenerator} />
                 </Switch>
               </CSSTransition>
             </TransitionGroup>

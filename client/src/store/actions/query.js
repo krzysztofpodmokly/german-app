@@ -23,3 +23,19 @@ export const fetchDataSuccess = keystroke => async dispatch => {
     });
   }
 };
+
+export const fetchDataByIdSuccess = id => async dispatch => {
+  try {
+    dispatch(fetchDataStart());
+    const res = await axios.get('/api/translations/' + id);
+    dispatch({
+      type: actionTypes.FETCH_DATA_BY_ID_SUCCESS,
+      payload: res.data
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.FETCH_DATA_BY_ID_FAIL,
+      payload: error
+    });
+  }
+};
