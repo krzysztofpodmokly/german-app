@@ -10,7 +10,6 @@ export const fetchDataStart = () => {
 export const fetchDataSuccess = keystroke => async dispatch => {
   try {
     dispatch(fetchDataStart());
-    console.log('here');
     const queryParams = `?search=${keystroke}`;
     const res = await axios.get('/api/translations' + queryParams);
     dispatch({

@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DatabaseItem from './DatabaseItem/DatabaseItem';
 import classes from './DatabaseList.module.css';
+import TypeToSearch from '../NoContentToDisplay/TypeToSearch/TypeToSearch';
 
 const DatabaseList = props => {
   const renderedList = props.query.map(item => {
-    console.log(item);
     return (
       <DatabaseItem
         key={item._id}
@@ -16,7 +16,9 @@ const DatabaseList = props => {
     );
   });
 
-  return (
+  return renderedList.length === 0 ? (
+    <TypeToSearch />
+  ) : (
     <div className={[classes.Container, classes.Scrollbar].join(' ')}>
       {renderedList}
     </div>
