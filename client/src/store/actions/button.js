@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 
-export const showButton = () => {
+export const buttonClicked = () => {
   return {
-    type: actionTypes.SHOW_BUTTON
+    type: actionTypes.BUTTON_CLICKED
   };
 };

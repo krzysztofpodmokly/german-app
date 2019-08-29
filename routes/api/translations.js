@@ -129,4 +129,23 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// @route     GET /api/translations/delete/:id
+// @desc      Remove an item from database
+// @access    Public
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const wordToDelete = await Record.findById(req.params.id);
+
+    if (!wordToDelete) {
+      return res.status(404).send({ msg: 'Dataset not found' });
+    }
+
+    await wordToDelete.remove();
+    res.send({ msg: 'Dataset was removed!' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;

@@ -1,12 +1,12 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initState = {
-  show: false
+  clicked: false
 };
 
 const buttonReducer = (state = initState, { type, payload }) => {
   switch (type) {
-    case actionTypes.SHOW_BUTTON:
+    case actionTypes.BUTTON_CLICKED:
       return {
         ...state,
         clicked: true
