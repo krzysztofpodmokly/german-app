@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Input from '../../components/UI/Input/Input';
 import classes from './SearchEngine.module.css';
@@ -6,6 +6,7 @@ import globalClasses from '../../assets/styles/Global.module.css';
 import DatabaseList from '../../components/DatabaseList/DatabaseList';
 import DatabaseInfo from '../../components/DatabaseList/DatabaseInfo/DatabaseInfo';
 import { fetchDataSuccess } from '../../store/actions';
+import TypeToSearch from '../../components/NoContentToDisplay/TypeToSearch/TypeToSearch';
 
 const SearchEngine = props => {
   const [input, setInput] = useState({
@@ -61,12 +62,24 @@ const SearchEngine = props => {
           changed={e => onInputChange(e)}
         />
         <div className={classes.ContentBox}>
-          <DatabaseList />
-          <DatabaseInfo />
+          {props.query.length === 0 ? (
+            <TypeToSearch />
+          ) : (
+            <Fragment>
+              <DatabaseList />
+              <DatabaseInfo />
+            </Fragment>
+          )}
         </div>
       </div>
     </div>
   );
+};
+
+const mapStateToProps = state => {
+  return {
+    query: state.query.queryData
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -76,6 +89,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SearchEngine);

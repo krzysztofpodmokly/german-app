@@ -15,8 +15,9 @@
 }
 
 .InnerContent:hover {
-  background-color: #F7F7F7;
+  background-color: #592F81;
   cursor: pointer;
+  color: #fff;
 }
 
 .InnerContent:hover .BtnDelete {
@@ -40,7 +41,7 @@
   opacity: 0;
   border: none;
   /* height: 70%; */
-  color: #2b0152;
+  color: #fff;
   border-radius: 3px;
   outline: none;
   background-color: transparent;

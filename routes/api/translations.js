@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Record = require('../../models/Record');
+const ObjectId = require('mongodb').ObjectId;
 
 // @route     POST /api/translations
 // @desc      Create record in database with german word, translation and a sentence with this word
@@ -109,6 +110,19 @@ router.get('/', async (req, res) => {
       // sentences: { $regex: regExp, $nin: ['sentence'] }
     });
     res.send(words);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route     GET /api/translations/:id
+// @desc      Retrieve set of data for particular id
+// @access    Public
+router.get('/:id', async (req, res) => {
+  try {
+    const wordById = await Record.findOne({ _id: req.params.id });
+    res.send(wordById);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server error');
