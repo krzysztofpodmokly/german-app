@@ -3,7 +3,8 @@ import * as actionTypes from '../actions/actionTypes';
 const initState = {
   loading: true,
   queryData: [],
-  error: null
+  error: null,
+  queryById: {}
 };
 
 const queryReducer = (state = initState, { type, payload }) => {
@@ -20,6 +21,18 @@ const queryReducer = (state = initState, { type, payload }) => {
         queryData: payload
       };
     case actionTypes.FETCH_DATA_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload
+      };
+    case actionTypes.FETCH_DATA_BY_ID_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        queryById: payload
+      };
+    case actionTypes.FETCH_DATA_BY_ID_FAIL:
       return {
         ...state,
         loading: false,

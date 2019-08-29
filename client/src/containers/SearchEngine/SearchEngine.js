@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import classes from './SearchEngine.module.css';
 import globalClasses from '../../assets/styles/Global.module.css';
@@ -67,7 +68,7 @@ const SearchEngine = props => {
           ) : (
             <Fragment>
               <DatabaseList />
-              <DatabaseInfo />
+              <Route path='/:id' component={DatabaseInfo} />
             </Fragment>
           )}
         </div>

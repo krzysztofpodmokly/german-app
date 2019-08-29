@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import DatabaseItem from './DatabaseItem/DatabaseItem';
 import classes from './DatabaseList.module.css';
 import TypeToSearch from '../NoContentToDisplay/TypeToSearch/TypeToSearch';
+import { fetchDataByIdSuccess } from '../../store/actions';
 
 const DatabaseList = props => {
   const renderedList = props.query.map(item => {
     return (
       <DatabaseItem
-        key={item._id}
         article={item.article}
         word={item.word}
         translated={item.wordTranslated}
+        clicked={() => props.fetchDataById(item._id)}
       />
     );
   });
@@ -29,8 +32,18 @@ const mapStateToProps = state => {
   return {
     loading: state.query.loading,
     query: state.query.queryData,
-    error: state.query.error
+    error: state.query.error,
+    queryById: state.query.queryById
   };
 };
 
-export default connect(mapStateToProps)(DatabaseList);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchDataById: id => dispatch(fetchDataByIdSuccess(id))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DatabaseList);
