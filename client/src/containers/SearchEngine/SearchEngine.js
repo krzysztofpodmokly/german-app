@@ -9,6 +9,7 @@ import DatabaseInfo from '../../components/DatabaseList/DatabaseInfo/DatabaseInf
 import { fetchDataSuccess } from '../../store/actions';
 import TypeToSearch from '../../components/NoContentToDisplay/TypeToSearch/TypeToSearch';
 import ClickToView from '../../components/NoContentToDisplay/ClickToView/ClickToView';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const SearchEngine = props => {
   const [input, setInput] = useState({
@@ -49,6 +50,32 @@ const SearchEngine = props => {
     color: '#5E2296'
   };
 
+  let element;
+  if (props.query.length === 0) {
+    element = <TypeToSearch />;
+  } else if (props.query.length !== 0 && !props.clicked) {
+    element = (
+      <Fragment>
+        <DatabaseList />
+        <ClickToView />
+      </Fragment>
+    );
+  } else if (props.clicked && props.loading) {
+    element = (
+      <Fragment>
+        <DatabaseList />
+        <Spinner style={{ margin: '0 auto' }} />
+      </Fragment>
+    );
+  } else if (props.clicked && !props.loading) {
+    element = (
+      <Fragment>
+        <DatabaseList />
+        <Route path='/:id' component={DatabaseInfo} />
+      </Fragment>
+    );
+  }
+
   return (
     <div className={classes.SearchContainer}>
       <div
@@ -67,7 +94,7 @@ const SearchEngine = props => {
           changed={e => onInputChange(e)}
         />
         <div className={classes.ContentBox}>
-          {props.query.length === 0 ? (
+          {/* {props.query.length === 0 ? (
             <TypeToSearch />
           ) : (
             <Fragment>
@@ -75,10 +102,12 @@ const SearchEngine = props => {
               {props.clicked ? (
                 <Route path='/:id' component={DatabaseInfo} />
               ) : (
-                <ClickToView />
+                <Spinner style={{ margin: '0 auto' }} />
               )}
             </Fragment>
-          )}
+          )} */}
+
+          {element}
         </div>
       </div>
     </div>
