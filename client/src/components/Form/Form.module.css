@@ -2,7 +2,8 @@
   display: flex;
   flex-flow: column;
   padding: 30px;
-  margin-top: 80px;
+  width: 50vw;
+  /* margin-top: 80px; */
   box-shadow: 0 20px 60px rgba(43, 1, 82, 0.6);
 }
 

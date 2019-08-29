@@ -38,6 +38,24 @@ const queryReducer = (state = initState, { type, payload }) => {
         loading: false,
         error: payload
       };
+    case actionTypes.DELETE_DATA_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.DELETE_DATA_SUCCESS:
+      return {
+        ...state,
+        queryData: state.queryData.filter(
+          queryItem => queryItem._id !== payload
+        ),
+        loading: false
+      };
+    case actionTypes.DELETE_DATA_FAIL:
+      return {
+        error: payload,
+        loading: false
+      };
     default:
       return state;
   }

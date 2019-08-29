@@ -24,6 +24,7 @@ const translationReducer = (state = initState, { type, payload }) => {
         ...state,
         error: payload
       };
+
     default:
       return state;
   }

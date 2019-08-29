@@ -39,3 +39,27 @@ export const fetchDataByIdSuccess = id => async dispatch => {
     });
   }
 };
+
+export const deleteTranslationStart = () => {
+  return {
+    type: actionTypes.DELETE_DATA_START
+  };
+};
+
+export const deleteTranslationSuccess = id => async dispatch => {
+  try {
+    dispatch(deleteTranslationStart());
+
+    await axios.delete('/api/translations/delete/' + id);
+
+    dispatch({
+      type: actionTypes.DELETE_DATA_SUCCESS,
+      payload: id
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.DELETE_DATA_FAIL,
+      payload: error
+    });
+  }
+};

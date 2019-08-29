@@ -9,7 +9,7 @@ const DatabaseItem = props => {
           {props.article} {props.word}
         </p>
         <div className={classes.BtnContainer}>
-          <button className={classes.BtnDelete}>
+          <button className={classes.BtnDelete} onClick={props.delete}>
             <i className='far fa-2x fa-times-circle'></i>
           </button>
         </div>

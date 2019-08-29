@@ -8,14 +8,14 @@ import DatabaseList from '../../components/DatabaseList/DatabaseList';
 import DatabaseInfo from '../../components/DatabaseList/DatabaseInfo/DatabaseInfo';
 import { fetchDataSuccess } from '../../store/actions';
 import TypeToSearch from '../../components/NoContentToDisplay/TypeToSearch/TypeToSearch';
+import ClickToView from '../../components/NoContentToDisplay/ClickToView/ClickToView';
 
 const SearchEngine = props => {
   const [input, setInput] = useState({
     inputField: {
       elementtype: 'input',
       elementconfig: {
-        type: 'text',
-        placeholder: 'Type to get a match!'
+        type: 'text'
       },
       value: '',
       validation: {
@@ -43,7 +43,10 @@ const SearchEngine = props => {
   };
 
   const inputStyle = {
-    width: '50%'
+    width: '50%',
+    height: '50px',
+    fontSize: '30px',
+    color: '#5E2296'
   };
 
   return (
@@ -53,6 +56,7 @@ const SearchEngine = props => {
       >
         <Input
           inputStyle={inputStyle}
+          className={classes.Input}
           elementtype={input.inputField.elementtype}
           elementconfig={input.inputField.elementconfig}
           value={input.inputField.value}
@@ -68,7 +72,11 @@ const SearchEngine = props => {
           ) : (
             <Fragment>
               <DatabaseList />
-              <Route path='/:id' component={DatabaseInfo} />
+              {props.clicked ? (
+                <Route path='/:id' component={DatabaseInfo} />
+              ) : (
+                <ClickToView />
+              )}
             </Fragment>
           )}
         </div>
@@ -79,7 +87,9 @@ const SearchEngine = props => {
 
 const mapStateToProps = state => {
   return {
-    query: state.query.queryData
+    query: state.query.queryData,
+    loading: state.query.loading,
+    clicked: state.button.clicked
   };
 };
 

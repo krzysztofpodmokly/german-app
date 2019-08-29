@@ -9,7 +9,7 @@ const Button = props => {
       style={props.style}
       disabled={props.disabled}
       onClick={() => {
-        props.showButton();
+        props.buttonClicked();
         props.clicked();
       }}
       className={[classes.Btn, classes.BtnLink].join(' ')}
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showButton: () => dispatch(actions.showButton())
+    buttonClicked: () => dispatch(actions.buttonClicked())
   };
 };
 
