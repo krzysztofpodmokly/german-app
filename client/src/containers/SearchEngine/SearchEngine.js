@@ -16,7 +16,7 @@ const DatabaseInfo = React.lazy(() =>
   import('../../components/DatabaseList/DatabaseInfo/DatabaseInfo')
 );
 
-const SearchEngine = props => {
+export const SearchEngine = props => {
   const [input, setInput] = useState({
     inputField: {
       elementtype: 'input',
