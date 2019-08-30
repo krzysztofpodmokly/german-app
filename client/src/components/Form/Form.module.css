@@ -13,3 +13,16 @@
   align-items: center;
   height: 100vh;
 }
+
+@media (max-width: 900px) {
+  .Form {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .Form {
+    width: 100vw;
+    padding: 30px 0;
+  }
+}

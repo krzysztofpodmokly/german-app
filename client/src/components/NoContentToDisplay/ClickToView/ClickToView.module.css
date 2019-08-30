@@ -4,3 +4,9 @@
   align-items: center;
   width: 40vw;
 }
+
+@media (max-width: 900px) {
+  .SmallScreenOnly {
+    display: none;
+  }
+}

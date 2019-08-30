@@ -4,11 +4,14 @@ import classes from './DatabaseInfo.module.css';
 import globalClasses from '../../../assets/styles/Global.module.css';
 import moment from 'moment';
 
-const DatabaseInfo = ({ queryById, loading }) => {
+const DatabaseInfo = ({ queryById, loading, style }) => {
   return (
     !loading &&
     Object.keys(queryById).length !== 0 && (
-      <div className={[classes.DatabaseInfo, globalClasses.FadeInUp].join(' ')}>
+      <div
+        style={style}
+        className={[classes.DatabaseInfo, globalClasses.FadeInUp].join(' ')}
+      >
         <div className={globalClasses.PaddingMedium}>
           <h1 className={classes.Word}>
             {queryById.article} {queryById.word}

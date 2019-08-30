@@ -10,6 +10,7 @@ import { fetchDataSuccess } from '../../store/actions';
 import TypeToSearch from '../../components/NoContentToDisplay/TypeToSearch/TypeToSearch';
 import ClickToView from '../../components/NoContentToDisplay/ClickToView/ClickToView';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Backdrop from '../../components/UI/Backdrop/Backdrop';
 
 const SearchEngine = props => {
   const [input, setInput] = useState({
@@ -27,6 +28,7 @@ const SearchEngine = props => {
       errorMessage: 'Please add German noun'
     }
   });
+
   const onInputChange = e => {
     const updatedInput = {
       ...input
@@ -43,7 +45,7 @@ const SearchEngine = props => {
   };
 
   const inputStyle = {
-    width: '50%',
+    width: '100%',
     height: '50px',
     fontSize: '30px',
     color: '#5E2296'

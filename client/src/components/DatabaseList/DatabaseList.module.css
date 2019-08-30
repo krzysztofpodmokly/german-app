@@ -27,3 +27,9 @@
       color-stop(0.3, rgba(64, 47, 80, 0.7)));
 
 }
+
+@media (max-width: 900px) {
+  .Container {
+    width: 96%;
+  }
+}

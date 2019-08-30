@@ -128,3 +128,16 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 600px) {
+  .General {
+    font-weight: 300;
+    padding: 5px 0;
+  }
+
+  .Header {
+    padding: 5px;
+    font-size: 25px;
+    font-weight: 300;
+  }
+}
