@@ -1,16 +1,20 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import classes from './SearchEngine.module.css';
 import globalClasses from '../../assets/styles/Global.module.css';
 import DatabaseList from '../../components/DatabaseList/DatabaseList';
-import DatabaseInfo from '../../components/DatabaseList/DatabaseInfo/DatabaseInfo';
+
+// import DatabaseInfo from '../../components/DatabaseList/DatabaseInfo/DatabaseInfo';
 import { fetchDataSuccess } from '../../store/actions';
 import TypeToSearch from '../../components/NoContentToDisplay/TypeToSearch/TypeToSearch';
 import ClickToView from '../../components/NoContentToDisplay/ClickToView/ClickToView';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import Backdrop from '../../components/UI/Backdrop/Backdrop';
+
+const DatabaseInfo = React.lazy(() =>
+  import('../../components/DatabaseList/DatabaseInfo/DatabaseInfo')
+);
 
 const SearchEngine = props => {
   const [input, setInput] = useState({
@@ -72,7 +76,14 @@ const SearchEngine = props => {
     element = (
       <Fragment>
         <DatabaseList />
-        <Route path='/:id' component={DatabaseInfo} />
+        <Route
+          path='/:id'
+          render={() => (
+            <Suspense>
+              <DatabaseInfo />
+            </Suspense>
+          )}
+        />
       </Fragment>
     );
   }
