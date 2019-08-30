@@ -2,13 +2,15 @@
   position: relative;
   top: 10px;
   margin-top: 30px;
-  box-shadow: inset 0 20px 50px #2b0152;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
   transition: background-color 0.3s;
   border: none;
   outline: none;
   padding: 15px 20px;
   width: 20vw;
   margin: 0 auto;
+  background: rgba(43, 1, 82, 0.6);
+
 }
 
 .Btn::before {
@@ -27,7 +29,6 @@
 
 .Btn:hover::before {
   transform: scaleX(1);
-
 }
 
 .Btn:hover {

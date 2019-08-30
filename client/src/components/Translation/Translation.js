@@ -18,7 +18,8 @@ const Translation = ({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -300%)'
+    transform: 'translate(-50%, -300%)',
+    fontSize: '25px'
   };
 
   // Function which returns bold word

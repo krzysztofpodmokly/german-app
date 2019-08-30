@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import DatabaseItem from './DatabaseItem/DatabaseItem';
 import classes from './DatabaseList.module.css';
+import globalClasses from '../../assets/styles/Global.module.css';
 import TypeToSearch from '../NoContentToDisplay/TypeToSearch/TypeToSearch';
 import {
   fetchDataByIdSuccess,
@@ -32,7 +33,13 @@ const DatabaseList = props => {
   return renderedList.length === 0 ? (
     <TypeToSearch />
   ) : (
-    <div className={[classes.Container, classes.Scrollbar].join(' ')}>
+    <div
+      className={[
+        classes.Container,
+        classes.Scrollbar,
+        globalClasses.FadeIn
+      ].join(' ')}
+    >
       {renderedList}
     </div>
   );
