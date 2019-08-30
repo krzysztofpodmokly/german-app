@@ -27,7 +27,6 @@ const SearchEngine = props => {
       errorMessage: 'Please add German noun'
     }
   });
-
   const onInputChange = e => {
     const updatedInput = {
       ...input

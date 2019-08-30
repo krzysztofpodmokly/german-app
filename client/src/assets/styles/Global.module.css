@@ -47,6 +47,10 @@
   top: 80px;
 }
 
+.FadeIn {
+  animation: fadeIn .6s ease;
+}
+
 .FadeInLeft {
   animation: fadeInLeft .6s ease;
 }
@@ -56,10 +60,14 @@
 }
 
 .BtnFadeIn {
-  animation: buttonFadeIn .6s ease-out;
+  animation: fadeIn .6s ease-out;
 }
 
-@keyframes buttonFadeIn {
+.FadeInUp {
+  animation: fadeInUp .5s ease;
+}
+
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -89,6 +97,34 @@
 
   100% {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(2vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.FadeOut {
+  animation: fadeOut .6s ease;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(2vh);
+  }
+
+  100% {
+    opacity: 0;
     transform: translateY(0);
   }
 }
