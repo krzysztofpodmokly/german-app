@@ -7,7 +7,7 @@ import Hamburger from './Hamburger/Hamburger';
 const Toolbar = props => {
   return (
     <header className={classes.Toolbar}>
-      <Hamburger clicked={props.toggleMenu}>MENU</Hamburger>
+      <Hamburger clicked={props.toggleMenu}></Hamburger>
       <nav className={classes.DesktopOnly}>
         <NavigationItems />
       </nav>

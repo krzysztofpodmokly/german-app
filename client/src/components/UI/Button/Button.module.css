@@ -7,7 +7,7 @@
   border: none;
   outline: none;
   padding: 15px 20px;
-  width: 20vw;
+  width: 300px;
   margin: 0 auto;
   background: rgba(43, 1, 82, 0.6);
 
@@ -50,4 +50,10 @@
   box-shadow: none;
   color: #babdbe;
   content: none;
+}
+
+@media (max-width: 600px) {
+  .Btn {
+    width: 50vw;
+  }
 }

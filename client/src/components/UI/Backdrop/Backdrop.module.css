@@ -13,6 +13,12 @@
   animation: fadeIn .4s ease forwards;
 }
 
+@media (min-width: 901px) {
+  .SmallScreenOnly {
+    display: none;
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

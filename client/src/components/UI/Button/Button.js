@@ -4,6 +4,8 @@ import classes from './Button.module.css';
 import * as actions from '../../../store/actions';
 
 const Button = props => {
+  const style = { fontWeight: '200' };
+
   return (
     <button
       style={props.style}

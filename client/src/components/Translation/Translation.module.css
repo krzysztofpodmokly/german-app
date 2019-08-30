@@ -20,3 +20,29 @@
   text-align: center;
   /* box-shadow: 0 10px 20px -6px #2B0152; */
 }
+
+@media (max-width: 900px) {
+  .Word {
+    font-size: 50px;
+  }
+
+  .Sentence {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Word {
+    font-size: 40px;
+  }
+
+  .Translation {
+    font-size: 30px
+  }
+
+  .Sentence {
+    font-size: 20px;
+    font-weight: 300;
+    margin-top: 20px;
+  }
+}
