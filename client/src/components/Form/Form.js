@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Input from '../UI/Input/Input';
@@ -83,7 +84,6 @@ const Form = props => {
   });
 
   const [formIsValid, setFormIsValid] = useState(false);
-
   const formElements = [];
   for (let key in translationForm) {
     formElements.push({
@@ -150,7 +150,7 @@ const Form = props => {
 
     props.postNewTranslation(formData);
     // redirect after submitting new record
-    props.history.replace('/');
+    props.history.push('/');
   };
 
   const inputStyle = {
@@ -207,4 +207,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Form);
+)(withRouter(Form));
