@@ -40,8 +40,10 @@ export const SearchEngine = props => {
 
     const updatedInputElement = { ...updatedInput['inputField'] };
     updatedInputElement.value = e.target.value;
+
     updatedInputElement.touched = true;
     updatedInput['inputField'] = updatedInputElement;
+
     setInput(updatedInput);
 
     // trigger database query on each key stroke
