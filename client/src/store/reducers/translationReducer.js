@@ -22,7 +22,8 @@ const translationReducer = (state = initState, { type, payload }) => {
     case actionTypes.POST_TRANSLATION_FAILURE:
       return {
         ...state,
-        error: payload
+        error: payload,
+        loading: false
       };
 
     default:

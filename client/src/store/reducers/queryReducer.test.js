@@ -30,4 +30,34 @@ describe('query reducer', () => {
       queryById: {}
     });
   });
+
+  it('should fetch data by a give id from the database', () => {
+    expect(
+      reducer(initState, {
+        type: actionTypes.FETCH_DATA_BY_ID_SUCCESS,
+        payload: { dataById: 'data' }
+      })
+    ).toEqual({
+      loading: false,
+      queryData: [],
+      error: null,
+      queryById: { dataById: 'data' }
+    });
+  });
+
+  it('should delete an item by a given id', () => {
+    expect(
+      reducer(initState, {
+        type: actionTypes.DELETE_DATA_SUCCESS,
+        payload: 'some-random-id'
+      })
+    ).toEqual({
+      loading: false,
+      queryData: initState.queryData.filter(
+        data => data._id !== 'some-random-id'
+      ),
+      error: null,
+      queryById: {}
+    });
+  });
 });
