@@ -10,22 +10,22 @@
   margin-left: 30px;
   padding: 0 10px;
   width: 40vw;
-  transition: all .3s ease-out;
-  border-bottom: 1px solid rgba(43, 1, 82, .2);
+  transition: all 0.3s ease-out;
+  border-bottom: 1px solid rgba(43, 1, 82, 0.2);
 }
 
 .InnerContent:hover {
-  background-color: #592F81;
+  background-color: #592f81;
   cursor: pointer;
   color: #fff;
 }
 
 .InnerContent:hover .BtnDelete {
-  animation: moveRight .6s ease .2s forwards;
+  animation: moveRight 0.6s ease 0.2s forwards;
 }
 
 .InnerContent:hover .BtnView {
-  animation: moveRight .6s ease forwards;
+  animation: moveRight 0.6s ease forwards;
 }
 
 .Article {
@@ -40,6 +40,7 @@
 .BtnDelete {
   opacity: 0;
   border: none;
+  margin-right: 10px;
   /* height: 70%; */
   color: #fff;
   border-radius: 3px;
@@ -59,17 +60,20 @@
   .InnerContent {
     width: 100%;
   }
+
+  .BtnDelete {
+    margin-right: 50px;
+  }
 }
 
 @keyframes moveRight {
   0% {
     opacity: 0;
     transform: translateX(1vh) rotate(90deg);
-
   }
 
   100% {
     opacity: 1;
-    transform: translateX(0) rotate(0deg)
+    transform: translateX(0) rotate(0deg);
   }
 }
