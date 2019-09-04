@@ -3,8 +3,6 @@ import React from 'react';
 import classes from './Backdrop.module.css';
 
 const Backdrop = props => {
-  console.log(props.show);
-
   const cssClasses = [
     classes.Backdrop,
     props.show ? classes.BackdropOpen : null,

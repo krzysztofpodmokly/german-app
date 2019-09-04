@@ -6,3 +6,4 @@ export {
   fetchDataByIdSuccess,
   deleteTranslationSuccess
 } from './query';
+export { setAlert } from './alert';

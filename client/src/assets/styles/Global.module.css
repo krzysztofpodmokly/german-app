@@ -1,5 +1,6 @@
 .Wrapper {
   position: relative;
+  z-index: 2;
 }
 
 .Wrapper::after {
@@ -45,7 +46,10 @@
   text-align: center;
   position: relative;
   top: 80px;
+  z-index: 2;
 }
+
+
 
 .FadeIn {
   animation: fadeIn .6s ease;
@@ -133,6 +137,12 @@
   .General {
     font-weight: 300;
     padding: 5px 0;
+  }
+
+  .Layout {
+    background: #e5e5e5;
+    height: 100vh;
+    position: relative;
   }
 
   .Header {

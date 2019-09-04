@@ -44,7 +44,7 @@ router.post(
       // check word OR translation if was already added
       let translatedWord = await Record.findOne({
         $or: [{ word }, { wordTranslated }]
-      }).populate(['sentence']);
+      });
       if (translatedWord) {
         return res
           .status(400)
