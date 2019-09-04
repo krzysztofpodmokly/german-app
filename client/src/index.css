@@ -50,6 +50,12 @@ a:visited {
   text-decoration: none;
 }
 
+@media (max-width: 600px) {
+  body {
+    overflow-y: scroll;
+  }
+}
+
 @keyframes zoomIn {
   0% {
     opacity: 0;
