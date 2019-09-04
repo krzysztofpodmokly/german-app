@@ -9,6 +9,7 @@ import wordReducer from './store/reducers/wordReducer';
 import translationReducer from './store/reducers/translationReducer';
 import buttonReducer from './store/reducers/buttonReducer';
 import queryReducer from './store/reducers/queryReducer';
+import alertReducer from './store/reducers/alertReducer';
 
 import App from './App';
 import './index.css';
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   word: wordReducer,
   translation: translationReducer,
   button: buttonReducer,
-  query: queryReducer
+  query: queryReducer,
+  alert: alertReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

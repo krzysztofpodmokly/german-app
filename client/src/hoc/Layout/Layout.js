@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react';
 import classes from './Layout.module.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import MobileMenu from '../../components/Navigation/MobileMenu/MobileMenu';
+// import Alert from '../../components/Alert/Alert';
 
 const Layout = props => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);

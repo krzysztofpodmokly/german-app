@@ -7,19 +7,30 @@ import TranslationGenerator from './containers/TranslationGenerator/TranslationG
 import Landing from './components/Landing/Landing';
 import Spinner from './components/UI/Spinner/Spinner';
 
+import globalClasses from './assets/styles/Global.module.css';
+import Alert from './components/Alert/Alert';
+
 const SearchEngine = React.lazy(() =>
   import('./containers/SearchEngine/SearchEngine')
 );
 const Form = React.lazy(() => import('./components/Form/Form'));
+
 const spinnerStyle = {
   left: '50%',
   margin: '0'
 };
 
+// const background = {
+//   background: '#e5e5e5',
+//   height: '100vh',
+//   position: 'relative'
+// };
+
 const App = () => {
   return (
-    <div>
+    <div className={globalClasses.Layout}>
       <Landing />
+      <Alert />
       <Layout>
         <Route
           render={({ location }) => (

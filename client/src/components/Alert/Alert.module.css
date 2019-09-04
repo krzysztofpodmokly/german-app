@@ -1,0 +1,18 @@
+.Alert {
+  padding: 0.8rem;
+  opacity: 0.9;
+  background: #f4f4f4;
+  color: #333;
+  width: 400px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%)
+}
+
+.AlertDanger {
+  background: #dc3545;
+  color: #fff;
+}

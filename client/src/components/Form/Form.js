@@ -127,9 +127,17 @@ const Form = props => {
         translationForm[formElementIdentifier].value;
     }
 
-    props.postNewTranslation(formData);
-    // redirect after submitting new record
-    props.history.push('/');
+    if (!props.error) {
+      props.postNewTranslation(formData);
+      // redirect after submitting new record
+      props.history.push('/');
+    } else {
+      props.setAlert(
+        'Translations already exists - reload page!',
+        'danger',
+        3000
+      );
+    }
   };
 
   const inputStyle = {
@@ -172,14 +180,18 @@ const Form = props => {
 
 const mapStateToProps = state => {
   return {
-    error: state.translation.error
+    error: state.translation.error,
+    loading: state.translation.loading,
+    alerts: state.alert
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     postNewTranslation: formData =>
-      dispatch(actions.postTranslationSuccess(formData))
+      dispatch(actions.postTranslationSuccess(formData)),
+    setAlert: (msg, alertType, timeout) =>
+      dispatch(actions.setAlert(msg, alertType, timeout))
   };
 };
 
